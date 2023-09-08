@@ -5,6 +5,9 @@ function guardarReserva(documento, habitacion, precio, fechaIngreso, fechaEgreso
     const diasTotales = calcularEstadia(fechaIngreso, fechaEgreso);
     let precioFinal = diasTotales * precio;
     reservas = JSON.parse(localStorage.getItem("reservas"));
+    if (reservas == null){
+        reservas = [];
+    }
     reservas.push({dni: documento, habitacion: habitacion, precio: precioFinal, dias: diasTotales, llegada: fechaIngreso, salida: fechaEgreso});
     const reservasJS = JSON.stringify(reservas);
     localStorage.setItem("reservas", reservasJS); 
